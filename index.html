@@ -101,10 +101,47 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Ejemplo básico de MindAR</title>
+		<title>Escena AR</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script>
+
+		<script>
+			AFRAME.registerComponent("occlusion", {
+				schema: {
+					type: "boolean",
+					default: true,
+				},
+
+				init: function () {
+					this.setOcclusion(this.data);
+				},
+
+				update: function () {
+					console.log(this.data);
+					this.setOcclusion(this.data);
+				},
+
+				setOcclusion: function (val) {
+	
+					const material = new THREE.MeshStandardMaterial({
+						colorWrite: !val,
+						color: 0xff0000,
+					});
+
+
+					this.el.object3D.traverse((obj) => {
+						obj.material = material;
+					});
+				},
+			});
+
+			function enableOcclusion(val, val2) {
+				let obj = document.getElementById("occlusion");
+				obj.setAttribute("visible", val);
+				obj.setAttribute("occlusion", val2);
+			}
+		</script>
 	</head>
 	<body>
 		<a-scene
@@ -116,32 +153,23 @@
 				position="0 0 0"
 				look-controls="enabled: false"
 			></a-camera>
+
 			<a-entity mindar-image-target="targetIndex: 0">
-				<a-entity id="axis" scale="1 1 1">
+				<a-entity
+					id="occlusion"
+					occlusion=""
+					position="1.1 0 0"
+					scale="1 1 1"
+				>
 					<a-box
-						position="0.5 0 0"
-						depth="0.1"
-						height="0.1"
-						width="1"
-						color="red"
-					>
-					</a-box>
-					<a-box
-						position="0 0.5 0"
-						depth="0.1"
-						height="1"
-						width="0.1"
-						color="green"
-					>
-					</a-box>
-					<a-box
-						position="0 0 0.5"
-						depth="1"
-						height="0.1"
-						width="0.1"
-						color="blue"
-					>
-					</a-box>
+						position="0 0.375 0"
+						height="0.75"
+						width="0.75"
+						depth="0.75"
+						material="color:orange;opacity:0.5"
+						geometry=""
+					></a-box>
+				</a-entity>
 				</a-entity>
 			</a-entity>
 		</a-scene>
