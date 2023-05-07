@@ -50,7 +50,7 @@
 			<a-assets>
 				<a-asset-item
 					src="./assets/jar/jar/ceramic_vase_02_1k.gltf"
-					id="duck"
+					id="jar"
 				/>
 			</a-assets>
 			<a-camera
@@ -73,11 +73,19 @@
 						geometry
 					></a-box>
 				</a-entity>
-      			  <a-entity
+      			<a-entity
       			  id="horse"
       			  gltf-model="#duck"
       			  position="0 0 -90"
+				  scale="1 1 1"
       			>
+
+				<a-entity
+				  id="jar"
+				  gltf-model="#jar"
+				  position="0 0 3"
+				scale="1 1 1"
+				>
 			</a-entity>
 		</a-scene>
 	</body>
