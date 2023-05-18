@@ -37,51 +37,64 @@
 	</head>
 	<body>
 		<a-scene
-			mindar-image="imageTargetSrc: ./skell.mind;"
+			mindar-image="imageTargetSrc: ./skell.mind"
 			vr-mode-ui="enabled: false"
 			device-orientation-permission-ui="enabled: false"
+			inspector=""
+			keyboard-shortcuts=""
+			screenshot=""
 		>
 			<a-assets>
 				<a-asset-item
-					src="./assets/duck/rubber_duck_toy_1k.gltf"
-					id="duck"
-				/>
-			</a-assets>
+					src="./assets/plant/potted_plant_04_1k.gltf"
+					id="plant"
+				>
+				</a-asset-item
+			></a-assets>
 			<a-assets>
 				<a-asset-item
-					src="./assets/jar/jar/ceramic_vase_02_1k.gltf"
-					id="jar"
-				/>
-			</a-assets>
+					src="./assets/ceramic/ceramic_vase_02_1k.gltf"
+					id=""
+				>
+				</a-asset-item
+			></a-assets>
 			<a-camera
 				position="0 0 0"
 				look-controls="enabled: false"
+				camera=""
+				rotation=""
+				wasd-controls=""
+				data-aframe-inspector-original-camera=""
 			></a-camera>
 
-			<a-entity mindar-image-target="targetIndex: 0">
-				<a-box
+			<a-entity mindar-image-target="">
+				<!-- 				<a-box
 					position="0 1 0"
 					scale="1 1 1"
 					material="color:orange;opacity:0.5"
 					geometry
 					occlusion
 				></a-box>
+ -->
 				<a-entity
-					id="duck_"
-					gltf-model="#duck"
-					position="0 0 0"
-					rotation="90 0 0"
-					scale="2 2 2"
+					id="plant_"
+					gltf-model="./assets/plant/potted_plant_04_1k.gltf"
+					position="2.49675 -2.29721 -1.75829"
+					rotation="5 0 0"
+					scale="3 3 3"
 				></a-entity>
-
 				<a-entity
-					id="jar_"
-					gltf-model="#duck"
+					id="ceramic_"
+					gltf-model=""
 					position="0.7 1.2 0"
 					rotation="90 0 0"
 					scale="2 2 2"
 				></a-entity>
 			</a-entity>
-		</a-scene>
+			<div class="a-loader-title" style="display: none">Escena AR</div>
+			<div class="a-loader-title" style="display: none">
+				Escena AR
+			</div></a-scene
+		>
 	</body>
 </html>
