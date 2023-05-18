@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Escena AR</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
 		<script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script>
 
@@ -38,7 +38,7 @@
 				init: function () {
 					// Create shadow material
 					const material = new THREE.ShadowMaterial({
-						opacity: 0.2,
+						opacity: 0.5,
 					});
 
 					// Apply material to object and all children
@@ -65,10 +65,7 @@
 					id="ceramic"
 				/>
 			</a-assets>
-			<a-camera
-				position="0 0 0"
-				look-controls="enabled: false"
-			></a-camera>
+			<a-camera position="0 0 0"></a-camera>
 
 			<a-entity mindar-image-target="targetIndex: 0">
 				<a-box
@@ -99,18 +96,26 @@
 				></a-entity>
 
 				<a-plane
-					material="color:white;opacity:0.5"
-					scale="10 10 10"
-					position="0 -1.6 0"
-					rotation="-90 0 0"
+					id="plane"
 					shadow="cast:false"
 					shadowonly
+					material="color:white;opacity:0.5"
+					scale="5 5 5"
+					position="0 -1.5 0"
+					rotation="-90 0 0"
 				></a-plane>
 
 				<a-entity
 					id="luz_blanca"
-					position="5 1 5"
+					position="5 2.5 5"
 					light="type:spot; castShadow:true; intensity:0.9;color:white"
+				>
+				</a-entity>
+
+				<a-entity
+					id="luz_amarilla"
+					position="1 2 1"
+					light="type:directional; castShadow:false;intensity:0.9;color:yellow"
 				>
 				</a-entity>
 
