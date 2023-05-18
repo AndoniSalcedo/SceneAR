@@ -33,69 +33,90 @@
 					});
 				},
 			});
+
+			AFRAME.registerComponent("shadowonly", {
+				init: function () {
+					// Create shadow material
+					const material = new THREE.ShadowMaterial({
+						opacity: 0.2,
+					});
+
+					// Apply material to object and all children
+					this.el.object3D.traverse((obj) => {
+						obj.material = material;
+					});
+				},
+			});
 		</script>
 	</head>
 	<body>
 		<a-scene
-			mindar-image="imageTargetSrc: ./skell.mind"
+			mindar-image="imageTargetSrc: ./skell.mind;"
 			vr-mode-ui="enabled: false"
 			device-orientation-permission-ui="enabled: false"
-			inspector=""
-			keyboard-shortcuts=""
-			screenshot=""
 		>
 			<a-assets>
 				<a-asset-item
 					src="./assets/plant/potted_plant_04_1k.gltf"
 					id="plant"
-				>
-				</a-asset-item
-			></a-assets>
-			<a-assets>
+				/>
 				<a-asset-item
 					src="./assets/ceramic/ceramic_vase_02_1k.gltf"
-					id=""
-				>
-				</a-asset-item
-			></a-assets>
+					id="ceramic"
+				/>
+			</a-assets>
 			<a-camera
 				position="0 0 0"
 				look-controls="enabled: false"
-				camera=""
-				rotation=""
-				wasd-controls=""
-				data-aframe-inspector-original-camera=""
 			></a-camera>
 
-			<a-entity mindar-image-target="">
+			<a-entity mindar-image-target="targetIndex: 0">
 				<a-box
-					position="-1.45446 -1.47975 -3.453"
-					scale="3.17 1.3 1.15"
-					material="color: orange; opacity: 0.5"
-					geometry=""
-					rotation="11.06 0 -2.49"
+					position="2.2 -1.5 -0.5"
+					rotation="5 0 0"
+					scale="1.1 0.7 0.1"
+					material="color:orange;opacity:0.5"
+					geometry
+					occlusion
 				></a-box>
 
 				<a-entity
-					id="plant_"
-					gltf-model="./assets/plant/potted_plant_04_1k.gltf"
-					position="1.47445 -2.54376 -2.73547"
-					rotation="5 0 0"
-					scale="3 3 3"
-				></a-entity>
-				<a-entity
 					id="ceramic_"
-					gltf-model=""
-					position="0.7 1.2 0"
-					rotation="90 0 0"
-					scale="2 2 2"
+					gltf-model="#ceramic"
+					position="2.2 -2 -1.5"
+					rotation="5 0 0"
+					scale="1.5 4 2"
+					shadow
 				></a-entity>
+
+				<a-entity
+					id="plant_"
+					gltf-model="#plant"
+					position="0 -1.5 0"
+					rotation="5 0 0"
+					scale="2 2 2"
+					shadow
+				></a-entity>
+
+				<a-plane
+					material="color:white;opacity:0.5"
+					scale="10 10 10"
+					position="0 -1.6 0"
+					rotation="-90 0 0"
+					shadow="cast:false"
+					shadowonly
+				></a-plane>
+
+				<a-entity
+					id="luz_blanca"
+					position="5 1 5"
+					light="type:spot; castShadow:true; intensity:0.9;color:white"
+				>
+				</a-entity>
+
+				<a-entity id="luz_ambiente" light="type:ambient; intensity:0.2">
+				</a-entity>
 			</a-entity>
-			<div class="a-loader-title" style="display: none">Escena AR</div>
-			<div class="a-loader-title" style="display: none">Escena AR</div>
-			<div class="a-loader-title" style="display: none">
-				Escena AR
-			</div></a-scene
-		>
+		</a-scene>
 	</body>
 </html>
